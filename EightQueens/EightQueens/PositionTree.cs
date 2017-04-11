@@ -35,7 +35,7 @@ namespace EightQueens
             depth = numblerOfQueens;
             soFar = new List<PositionNode>();
 
-            sw = new StreamWriter("Queens_" + numblerOfQueens + "_" + DateTime.Now + ".txt");
+            sw = new StreamWriter(@"Log\Queens_" + numblerOfQueens + "_" + DateTime.Now + ".txt");
 
             root = new PositionNode();
             root.X = root.Y = -1;

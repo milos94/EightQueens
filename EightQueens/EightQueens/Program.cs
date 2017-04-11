@@ -16,7 +16,7 @@ namespace EightQueens
 
             Stopwatch sw = new Stopwatch();
 
-            using (StreamWriter strw = new StreamWriter("Log.txt"))
+            using (StreamWriter strw = new StreamWriter(@"Log\Log.txt"))
             {
                 while (number > 0)
                 {
