@@ -1,0 +1,18 @@
+
+Broj kraljica:8
+Broj kombinacija:92
+Proteklo vreme:00:00:00.0058883
+
+
+
+Broj kraljica:10
+Broj kombinacija:724
+Proteklo vreme:00:00:00.1091224
+
+
+
+Broj kraljica:12
+Broj kombinacija:14200
+Proteklo vreme:00:00:03.4430086
+
+

@@ -1,0 +1,5 @@
+G:\Projekti\EightQueens\EightQueens\bin\Debug\EightQueens.exe.config
+G:\Projekti\EightQueens\EightQueens\bin\Debug\EightQueens.exe
+G:\Projekti\EightQueens\EightQueens\bin\Debug\EightQueens.pdb
+G:\Projekti\EightQueens\EightQueens\obj\Debug\EightQueens.exe
+G:\Projekti\EightQueens\EightQueens\obj\Debug\EightQueens.pdb
