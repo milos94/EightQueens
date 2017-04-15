@@ -13,6 +13,9 @@ namespace EightQueens
         static void Main(string[] args)
         {
             int number = 1;
+            bool saveTree = true;
+            bool writeToFile = false;
+
 
             Stopwatch sw = new Stopwatch();
 
@@ -24,37 +27,33 @@ namespace EightQueens
 
                     if (Int32.TryParse(Console.ReadLine(), out number))
                     {
+                        Console.Write("Sacuvaj stablo (true/false): ");
+                        Boolean.TryParse(Console.ReadLine(), out saveTree);
+                        Console.Write("Sacuvaj kombinacije u fajl (true/false): ");
+                        Boolean.TryParse(Console.ReadLine(), out writeToFile);
+
                         if (number > 0)
                         {
-
-                            /*sw.Reset();
-                            sw.Start();
-
-                            PositionTree tree = new PositionTree(number);
-
-                            sw.Stop();
-
-                            Console.WriteLine("Broj kombinacija:{0}(sacuvano stablo)", tree.numberOfSolutions);
-                            Console.WriteLine("Proteklo vreme:{0}\n", sw.Elapsed);*/
-
-                            strw.Write(Environment.NewLine + "Broj kraljica:" + number + Environment.NewLine);
-                            /*strw.Write("Broj kombinacija:{0}(sacuvano stablo)" + Environment.NewLine, tree.numberOfSolutions);
-                            strw.Write("Proteklo vreme:{0}\n" + Environment.NewLine + Environment.NewLine, sw.Elapsed);*/
-
+                            
                             sw.Reset();
                             sw.Start();
 
-                            SolutionOnly solution = new SolutionOnly(number);
+                            PositionTree tree = new PositionTree(number,saveTree,writeToFile);
 
                             sw.Stop();
 
-                            Console.WriteLine("Broj kombinacija:{0}", solution.numberOfSolutions);
-                            Console.WriteLine("Proteklo vreme:{0}\n", sw.Elapsed);
-                            strw.Write("Broj kombinacija:{0}" + Environment.NewLine, solution.numberOfSolutions);
-                            strw.Write("Proteklo vreme:{0}\n" + Environment.NewLine + Environment.NewLine, sw.Elapsed);
+                            Console.WriteLine("\nBroj kombinacija:{0}", tree.numberOfSolutions);
+                            Console.WriteLine("Proteklo vreme:{0}", sw.Elapsed);
+                            Console.WriteLine("Sacuvano stablo: {0}" , ((saveTree) ? "Da" : "Ne"));
+                            Console.WriteLine("Upisano u fajl: {0}\n" , ((writeToFile) ? "Da" : "Ne"));
 
-                            //tree = null;
-                            solution = null;
+                            strw.WriteLine(Environment.NewLine + "Broj kraljica:" + number);
+                            strw.WriteLine("Broj kombinacija:{0}(sacuvano stablo)" , tree.numberOfSolutions);
+                            strw.WriteLine("Proteklo vreme:{0}\n", sw.Elapsed);
+                            strw.WriteLine("Sacuvano stablo: {0}", ((saveTree) ? "Da" : "Ne"));
+                            strw.WriteLine("Upisano u fajl: {0}", ((writeToFile) ? "Da" : "Ne"));
+                            tree = null;
+                            
                         }
 
                     }

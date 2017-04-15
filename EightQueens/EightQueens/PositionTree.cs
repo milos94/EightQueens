@@ -11,40 +11,45 @@ namespace EightQueens
     {
         private class PositionNode
         {
-            public int X { get; set; }
+            public char X { get; set; }
             public int Y { get; set; }
             public List<PositionNode> next { get; set; }
-            public PositionNode prevous { get; set; }
             public PositionNode()
             {
                 next = new List<PositionNode>();
-                prevous = null;
             }
         }
 
-        private PositionNode root { get; }
-        public Int64 numberOfSolutions { get; set; }
+        private PositionNode root;
+        public Int64 numberOfSolutions { get; internal set; }
         private int depth;
         private List<PositionNode> soFar;
         private StreamWriter sw;
+        private bool saveTree;
+        private bool writeToFile;
 
-
-        public PositionTree(int numblerOfQueens)
+        public PositionTree(int numblerOfQueens, bool saveTree, bool writeToFile)
         {
             numberOfSolutions = 0;
             depth = numblerOfQueens;
             soFar = new List<PositionNode>();
 
-            sw = new StreamWriter(@"Log\Queens_" + numblerOfQueens + "_" + DateTime.Now + ".txt");
+            this.writeToFile = writeToFile;
+            this.saveTree = saveTree;
+
+            if (writeToFile)
+            {
+                sw = new StreamWriter(@"Log\Queens_" + numblerOfQueens + "_" + DateTime.Now + ".txt");
+            }
 
             root = new PositionNode();
-            root.X = root.Y = -1;
+            root.X = (char)96; root.Y = -1;
 
             for (int i = 1; i <= depth; i++)
             {
                 PositionNode temp = new PositionNode();
                 temp.Y = 1;
-                temp.X = i;
+                temp.X = (char) (96+i);
                 soFar = new List<PositionNode>();
                 soFar.Add(temp);
                 root.next.Add(temp);
@@ -54,7 +59,10 @@ namespace EightQueens
                 }
 
             }
-            sw.Close();
+            if (writeToFile)
+            {
+                sw.Close();
+            }
         }
 
         private bool check(PositionNode a, PositionNode b)
@@ -76,7 +84,7 @@ namespace EightQueens
             {
                 bool flag = false;
                 PositionNode temp = new PositionNode();
-                temp.X = i;
+                temp.X = (char) (96+i);
                 temp.Y = level;
                 foreach (PositionNode po in soFar)
                 {
@@ -95,21 +103,25 @@ namespace EightQueens
 
                 if (level == depth)
                 {
-
-                    sw.Write((++numberOfSolutions) + ":{");
-                    foreach (PositionNode po in soFar)
+                    ++numberOfSolutions;
+                    if (writeToFile)
                     {
-                        sw.Write("(" + po.Y + "," + po.X + ") ; ");
+                        writePath(temp);
                     }
-                    sw.Write("("+p.Y+","+p.X+")}" + Environment.NewLine);
+
                     return true;
                 }
 
                 soFar.Add(temp);
-                if (!(addNode(temp, level + 1)))
+
+                if ((addNode(temp, level + 1)) && saveTree)
                 {
-                    p.next.RemoveAt(p.next.Count - 1);
+                    soFar.RemoveAt(soFar.Count - 1);
+                    continue;
                 }
+
+                p.next.RemoveAt(p.next.Count - 1);
+
                 soFar.RemoveAt(soFar.Count - 1);
             }
             if (p.next.Count == 0 && level != depth)
@@ -118,6 +130,16 @@ namespace EightQueens
             }
 
             return true;
+        }
+
+        private void writePath(PositionNode p)
+        {
+            sw.Write((numberOfSolutions) + ":{");
+            foreach (PositionNode po in soFar)
+            {
+                sw.Write( po.X + "" + po.Y + " ; ");
+            }
+            sw.Write( p.X + "" + p.Y + "}" + Environment.NewLine);
         }
     }
 }

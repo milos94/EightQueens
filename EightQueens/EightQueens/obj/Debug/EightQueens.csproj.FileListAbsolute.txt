@@ -6,3 +6,6 @@ G:\Projekti\EightQueens\EightQueens\obj\Debug\EightQueens.pdb
 C:\Users\Milos\Documents\GitHub\EightQueens\EightQueens\EightQueens\bin\Debug\EightQueens.exe.config
 C:\Users\Milos\Documents\GitHub\EightQueens\EightQueens\EightQueens\obj\Debug\EightQueens.exe
 C:\Users\Milos\Documents\GitHub\EightQueens\EightQueens\EightQueens\obj\Debug\EightQueens.pdb
+C:\Users\Milos\Documents\GitHub\EightQueens\EightQueens\EightQueens\bin\Debug\EightQueens.exe
+C:\Users\Milos\Documents\GitHub\EightQueens\EightQueens\EightQueens\bin\Debug\EightQueens.pdb
+C:\Users\Milos\Documents\GitHub\EightQueens\EightQueens\EightQueens\obj\Debug\EightQueens.csprojResolveAssemblyReference.cache
